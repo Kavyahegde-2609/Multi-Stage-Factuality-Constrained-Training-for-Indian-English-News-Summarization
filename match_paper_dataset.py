@@ -1,5 +1,5 @@
 """
-Match NewsSumm dataset to paper specifications (Table 5)
+Match NewsSumm dataset to paper specifications 
 Target: Exactly 317,498 articles with matching statistics
 """
 import pandas as pd
@@ -70,11 +70,11 @@ unique_categories = df['category'].nunique()
 
 print(f"\n{'Metric':<35} {'Your Data':<15} {'Paper Table 5':<15} {'Match':<10}")
 print("-"*70)
-print(f"{'Total articles':<35} {len(df):<15,} {TARGET_ARTICLES:<15,} { if len(df)==TARGET_ARTICLES else '❌'}")
-print(f"{'Avg words per article':<35} {avg_words_article:<15.2f} {TARGET_AVG_WORDS_ARTICLE:<15.2f} { if abs(avg_words_article-TARGET_AVG_WORDS_ARTICLE)<10 else '❌'}")
-print(f"{'Avg words per summary':<35} {avg_words_summary:<15.2f} {TARGET_AVG_WORDS_SUMMARY:<15.2f} { if abs(avg_words_summary-TARGET_AVG_WORDS_SUMMARY)<5 else '❌'}")
-print(f"{'Compression ratio':<35} {compression_ratio:<15.2f} {3.50:<15.2f} { if abs(compression_ratio-3.50)<0.2 else '❌'}")
-print(f"{'Unique categories':<35} {unique_categories:<15,} {'5121':<15} {'ℹ️'}")
+print(f"{'Total articles':<35} {len(df):<15,} {TARGET_ARTICLES:<15,} { if len(df)==TARGET_ARTICLES else }")
+print(f"{'Avg words per article':<35} {avg_words_article:<15.2f} {TARGET_AVG_WORDS_ARTICLE:<15.2f} { if abs(avg_words_article-TARGET_AVG_WORDS_ARTICLE)<10 else }")
+print(f"{'Avg words per summary':<35} {avg_words_summary:<15.2f} {TARGET_AVG_WORDS_SUMMARY:<15.2f} { if abs(avg_words_summary-TARGET_AVG_WORDS_SUMMARY)<5 else }")
+print(f"{'Compression ratio':<35} {compression_ratio:<15.2f} {3.50:<15.2f} { if abs(compression_ratio-3.50)<0.2 else }")
+print(f"{'Unique categories':<35} {unique_categories:<15,} {'5121':<15} ")
 print("="*70)
 
 # Create splits (90% train, 5% val, 5% test - from Section 6.1)
