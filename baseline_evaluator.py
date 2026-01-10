@@ -120,15 +120,14 @@ class ResumableEvaluator:
         
         print(f"✓ Loading: {model_id}")
         
+        
         if is_led:
-            tokenizer = LEDTokenizer.from_pretrained(model_id)
-            model = LEDForConditionalGeneration.from_pretrained(model_id)
-            
-            # CRITICAL FIX: Reduce attention window
-            original_window = model.config.attention_window[0] if isinstance(model.config.attention_window, list) else model.config.attention_window
-            model.config.attention_window = [512] * len(model.config.attention_window) if isinstance(model.config.attention_window, list) else 512
-            
-            print(f"  ✓ LED attention window optimized: {original_window} → 512")
+           tokenizer = LEDTokenizer.from_pretrained(model_id)
+           model = LEDForConditionalGeneration.from_pretrained(model_id)
+    
+    # Keep original attention window for compatibility
+           attention_window = model.config.attention_window[0] if isinstance(model.config.attention_window, list) else model.config.attention_window
+           print(f"  ✓ LED loaded with attention window: {attention_window}")
         else:
             tokenizer = AutoTokenizer.from_pretrained(model_id)
             model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
