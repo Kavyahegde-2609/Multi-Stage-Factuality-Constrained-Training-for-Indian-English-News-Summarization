@@ -115,7 +115,7 @@ EVAL_CONFIG = {
     'max_article_length': 1024,  # Tokens (for most models)
     'max_article_length_led': 4096,  # For LED/Long-T5 (can handle longer)
     
-    # Generation parameters
+    # Generation 9parameters
     'min_summary_length': 40,
     'max_summary_length': 150,
     'num_beams': 4,
