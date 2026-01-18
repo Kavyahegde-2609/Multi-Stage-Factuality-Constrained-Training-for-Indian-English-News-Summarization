@@ -21,14 +21,14 @@ A novel 3-stage training framework with Indian-specific factuality constraints.
 
 ## Two-Phase Approach
 
-├── baseline_investigation/ # Phase 1: 10-model evaluation
-├── novel_multistage/ # Phase 2: Novel training
-│ ├── code/
-│ │ ├── novel_losses.py
-│ │ └── train_multistage.py
-│ └── results/
-├── data/processed/ # NewsSumm dataset
-└── README.md
+ baseline_investigation/ # Phase 1: 10-model evaluation
+ novel_multistage/ # Phase 2: Novel training
+ code/
+   novel_losses.py
+   rain_multistage.py
+   results/
+   data/processed/ # NewsSumm dataset
+   README.md
 
 ---
 
@@ -79,11 +79,13 @@ Dynamic Loss Weighting across progressive training stages
 
 Indian-Specific Factuality Losses (entity, temporal, semantic)
 
+
 ##Citation
 @misc{hegde2026multistage,
   title={Multi-Stage Factuality-Constrained Training for Indian English News Summarization},
   author={Kavya Mahabaleshwara Hegde},
   year={2026}
 }
+
 
 **Last Updated:** January 18, 2026
