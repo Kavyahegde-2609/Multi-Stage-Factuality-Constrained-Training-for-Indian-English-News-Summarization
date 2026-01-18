@@ -1,125 +1,89 @@
 # Multi-Stage Factuality-Constrained Training for Indian English News Summarization
 
-**Novel Contribution:** Progressive multi-stage training with Indian English-specific factuality constraints.
+A novel 3-stage training framework with Indian-specific factuality constraints.
 
-##  Research Overview
+## Quick Summary
 
-This repository presents a **two-phase research approach**:
+**Problem:** Generic summarization models show substantial degradation in Indian entity preservation and notable temporal inconsistencies in news summaries.
 
-### **Phase 1: Baseline Investigation** (Motivation)
-- Fine-tuned LED on NewsSumm (253K articles)
-- Evaluated 10 state-of-the-art models
-- **Found:** Standard models achieve only 70% entity preservation, 77% temporal consistency
-- **Gap Identified:** Factuality not integrated in training
+**Solution:** A 3-stage progressive training framework with factuality-aware loss functions.
 
- See [`baseline_investigation/`](baseline_investigation/)
+**Results:**
 
-### **Phase 2: Novel Multi-Stage Framework** (Solution)
-- Developed 3-stage training with dynamic loss weighting
-- Integrated factuality constraints **during training**
-- **Results:** 96.7% entity preservation, 99.9% temporal consistency
-- **Improvement:** +26.7% entity preservation, +22.9% temporal consistency
+| Metric | Baseline | Novel | Improvement |
+|------|---------|-------|-------------|
+| Entity Preservation | ~70% | 96.7% | +26.7% |
+| Temporal Consistency | ~77% | 99.9% | +22.9% |
 
- See [`novel_multistage/`](novel_multistage/)
+*Improvements are computed using the proposed factuality evaluation module on a held-out evaluation set.*
 
 ---
 
-##  Key Results
+## Two-Phase Approach
 
-### Baseline (Phase 1) vs Novel Approach (Phase 2)
-
-| Metric | Baseline (LED) | Novel Multi-Stage | Improvement |
-|--------|---------------|-------------------|-------------|
-| **ROUGE-L** | 29.21% | 41.2% | **+12%** |
-| **Entity Preservation** | 70% | 96.7% | **+26.7%** |
-| **Temporal Consistency** | 77% | 99.9% | **+22.9%** |
-
-### Multi-Stage Training Progress
-```
-Stage 1 (Warmup):     Loss 1.108 → 0.509  (Fluency)
-Stage 2 (Factuality): Loss 0.509 → 0.288  (Entity + Temporal)
-Stage 3 (Refinement): Loss 0.288 → 0.288  (Balanced)
-```
+├── baseline_investigation/ # Phase 1: 10-model evaluation
+├── novel_multistage/ # Phase 2: Novel training
+│ ├── code/
+│ │ ├── novel_losses.py
+│ │ └── train_multistage.py
+│ └── results/
+├── data/processed/ # NewsSumm dataset
+└── README.md
 
 ---
 
-##  What's Novel
+### Phase 1: Baseline Investigation
 
-1. **Multi-Stage Training Architecture**
-   - Stage 1: Warmup (fluency)
-   - Stage 2: Factuality focus
-   - Stage 3: Multi-objective refinement
+Evaluation of 10 transformer-based summarization models on the NewsSumm dataset.
 
-2. **Dynamic Loss Weighting**
-```
-   Stage 1: CE=1.0, Entity=0.0, Temporal=0.0
-   Stage 2: CE=0.5, Entity=0.3, Temporal=0.2
-   Stage 3: CE=0.4, Entity=0.2, Temporal=0.2, Semantic=0.2
-```
+- Best baseline: **BART-Large-CNN** (30.83% ROUGE-L)
+- Observed gap: entity preservation (~70%), temporal consistency (~77%)
 
-3. **Indian English-Specific Losses**
-   - Entity Preservation Loss (56 Indian terms)
-   - Temporal Consistency Loss (date verification)
-   - Semantic Fidelity Loss
+[Details →](baseline_investigation/README.md)
 
 ---
 
-##  Quick Start
+### Phase 2: Novel Multi-Stage Training
 
-### Installation
+A 3-stage progressive framework with dynamic loss weighting:
+
+- **Stage 1:** Warmup (fluency learning)
+- **Stage 2:** Factuality (entity and temporal constraints)
+- **Stage 3:** Refinement (balanced multi-objective optimization)
+
+[Details →](novel_multistage/README.md)
+
+---
+
+## Quick Start
+
 ```bash
-git clone https://github.com/Kavyahegde-2609/Multi-Stage Factuality-Constrained Training for Indian English News Summarization.git
-cd Multi-Stage Factuality-Constrained Training for Indian English News Summarization
+git clone https://github.com/Kavyahegde-2609/Multi-Stage-Factuality-Constrained-Training-for-Indian-English-News-Summarization.git
+cd Multi-Stage-Factuality-Constrained-Training-for-Indian-English-News-Summarization
+
 pip install -r requirements.txt
-python -m spacy download en_core_web_sm
-```
 
-### Reproduce Baseline Results (Phase 1)
-```bash
+# Phase 1: Baseline evaluation
 cd baseline_investigation
 python baseline_evaluator.py
-```
 
-### Train Novel Multi-Stage Model (Phase 2)
-```bash
-cd novel_multistage
-python novel_training.py \
-    --train_data ../data/train_2k.csv \
-    --val_data ../data/val_1k.csv
-```
+# Phase 2: Multi-stage training
+cd ../novel_multistage
+python code/train_multistage.py
 
----
+## Key Contributions
 
-##  Repository Structure
-```
-baseline_investigation/      # Phase 1: Motivation
-    10 baseline models evaluation
-  Standard LED fine-tuning
+Multi-Stage Training Framework for Indian English news summarization
 
- novel_multistage/           # Phase 2: Novel contribution
-   Multi-stage training
-    Custom factuality losses
+Dynamic Loss Weighting across progressive training stages
 
- data/                       # NewsSumm preprocessing
- evaluation/                 # Evaluation scripts
- paper/                      # Research paper
- notebooks/                  # Jupyter notebooks
-```
+Indian-Specific Factuality Losses (entity, temporal, semantic)
 
----
+##Citation
+@misc{hegde2026multistage,
+  title={Multi-Stage Factuality-Constrained Training for Indian English News Summarization},
+  author={Kavya Mahabaleshwara Hegde},
+  year={2026}
+}
 
-
-
----
-
-##  Acknowledgments
-
-- **Dataset:** NewsSumm (Motghare et al., 2025)
-- **Base Model:** LED-Large-16384 (Beltagy et al., 2020)
-
-##  License
-
-MIT License
-
-
-
+**Last Updated:** January 18, 2026
