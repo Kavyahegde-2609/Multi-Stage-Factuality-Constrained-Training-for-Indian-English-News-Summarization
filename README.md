@@ -71,9 +71,15 @@ git clone https://github.com/Kavyahegde-2609/Multi-Stage-Factuality-Constrained-
 
 cd Multi-Stage-Factuality-Constrained-Training-for-Indian-English-News-Summarization
 
-## Dependencies
+## Environment setup
 
-All experiments were conducted using Python 3.9+.
+ **Python Version:** 3.10
+ 
+ **Tested On:** Google Colab, Kaggle, Local (VS Code)
+ 
+ **GPU:** Tesla T4 / P100 (Colab, Kaggle)
+
+## Dependencies
 
 Install required packages:
 
