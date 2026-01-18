@@ -71,9 +71,16 @@ git clone https://github.com/Kavyahegde-2609/Multi-Stage-Factuality-Constrained-
 
 cd Multi-Stage-Factuality-Constrained-Training-for-Indian-English-News-Summarization
 
-#Install dependencies
+## Dependencies
+
+All experiments were conducted using Python 3.9+.
+
+Install required packages:
 
 pip install -r requirements.txt
+
+python -m spacy download en_core_web_sm
+
 
 # Phase 1: Baseline evaluation
 cd baseline_investigation
