@@ -1,8 +1,6 @@
 """
 Research Configuration File
 ==========================
-Project: Domain-Adaptive Fine-Tuning of LED for Indian English 
-Multi-Document News Summarization
 Date: January 2025
 
 """
