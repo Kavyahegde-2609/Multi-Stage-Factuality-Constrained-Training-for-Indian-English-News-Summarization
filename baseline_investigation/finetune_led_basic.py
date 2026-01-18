@@ -246,15 +246,7 @@ del model
 del trainer
 torch.cuda.empty_cache()
 gc.collect()
-
 print("\n" + "=" * 80)
 print(" LED-NEWSSUMM COMPLETE!")
 print("=" * 80)
-print("\n Your fine-tuned model: ./led_newssumm_final")
-print("\n NEXT STEPS:")
-print("  1. Download the model folder")
-print("  2. Evaluate on test set")
-print("  3. Compare with baseline (20.76% ROUGE-2)")
-print("  4. Write your paper!")
-print("\n Expected improvement: +1.2-1.5% ROUGE-2")
-print("=" * 80)
+print("\n  fine-tuned model: ./led_newssumm_final")
