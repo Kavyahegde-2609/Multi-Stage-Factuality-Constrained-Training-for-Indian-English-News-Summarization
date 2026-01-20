@@ -1,9 +1,8 @@
-"""
- FINAL WORKING VERSION 
+ FINAL WORKING VERSION - NO FP16 ISSUES
 ==========================================
 FIXES: FP16 gradient error
 USES: Mixed precision with proper settings
-
+TIME: 1-2 hours to complete from scratch
 ==========================================
 """
 
@@ -246,6 +245,7 @@ del model
 del trainer
 torch.cuda.empty_cache()
 gc.collect()
+
 print("\n" + "=" * 80)
 print(" LED-NEWSSUMM COMPLETE!")
 print("=" * 80)
