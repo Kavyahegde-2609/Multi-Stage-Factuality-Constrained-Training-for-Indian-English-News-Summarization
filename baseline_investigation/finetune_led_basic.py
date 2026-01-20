@@ -2,7 +2,7 @@
 ==========================================
 FIXES: FP16 gradient error
 USES: Mixed precision with proper settings
-TIME: 1-2 hours to complete from scratch
+
 ==========================================
 """
 
